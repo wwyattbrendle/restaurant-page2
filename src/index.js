@@ -1,5 +1,6 @@
 import { home } from './home.js';
 import { menu } from './menu.js';
+import { contact } from './contact.js';
 
 const Page = (() => {
     const container = document.getElementById("content");
@@ -76,7 +77,7 @@ const nav = (() => {
     const menuTab = tabFactory("Menu", menu);
     Page.tabArray.push(menuTab);
 
-    const contactTab = tabFactory("Contact Us", home);
+    const contactTab = tabFactory("Contact Us", contact);
     Page.tabArray.push(contactTab);
 
     return {homeTab, menuTab, contactTab};
