@@ -25,11 +25,15 @@ const Page = (() => {
 //create objects for each of the tabs
 //objects should include an isAppended boolean for reference on event listeners
 const tabFactory = function(name, page) {
+    //creating index to keep track of position in array
+    let index = Page.tabArray.length;
+
+    //create element
     const tab = document.createElement("button");
     tab.textContent = `${name}`;
 
     //isAppended boolean to be checked
-    let isAppended = false;
+    let isAppended = {value: false};
 
     //add to navbar
     Page.navbar.appendChild(tab);
@@ -37,38 +41,42 @@ const tabFactory = function(name, page) {
     //functions for append and unappend
     const append = () => {
         Page.container.appendChild(page);
+        console.log('appended')
     }
     const unappend = () => {
         Page.container.removeChild(page);
-        isAppended = false;
     }
+
+    const toggleBool = () => isAppended.value = !isAppended.value;
     
     //add event listeners that check isAppended
     tab.addEventListener("click", function() {
-        if(isAppended === true) {
+        console.log('click');
+        if(Page.tabArray[index].isAppended.value === true) {
             return;
         } else {
             Page.tabArray.forEach((elem) => {
-                if(elem.isAppended === true){
+                if(elem.isAppended.value === true){
                     elem.unappend();
+                    elem.toggleBool();
                 }
             });
             append();
-            isAppended = true;
+            Page.tabArray[index].toggleBool()
         }
-        console.log(Page.tabArray);
     });
 
-    return {isAppended};
+    return {isAppended, unappend, toggleBool};
 }
 
 const nav = (() => {
     const homeTab = tabFactory("Home", home);
-    const menuTab = tabFactory("Menu", menu);
-    const contactTab = tabFactory("Contact Us", home);
-
     Page.tabArray.push(homeTab);
+
+    const menuTab = tabFactory("Menu", menu);
     Page.tabArray.push(menuTab);
+
+    const contactTab = tabFactory("Contact Us", home);
     Page.tabArray.push(contactTab);
 
     return {homeTab, menuTab, contactTab};
