@@ -1,16 +1,20 @@
 import { home } from './home.js';
 import { menu } from './menu.js';
 import { contact } from './contact.js';
+import './styles.css';
 
 const Page = (() => {
     const container = document.getElementById("content");
     const header = document.createElement('div');
+    header.setAttribute('id', 'header');
 
     //insert header DOM element before content html ele
     document.body.insertBefore(header, container);
 
     //create navbar element and append to header
     const navbar = document.createElement('nav');
+    navbar.setAttribute('id', 'navbar');
+
     header.appendChild(navbar);
 
     //create array for tab objects
@@ -32,6 +36,7 @@ const tabFactory = function(name, page) {
     //create element
     const tab = document.createElement("button");
     tab.textContent = `${name}`;
+    tab.classList.add('button');
 
     //isAppended boolean to be checked
     let isAppended = {value: false};
@@ -42,7 +47,7 @@ const tabFactory = function(name, page) {
     //functions for append and unappend
     const append = () => {
         Page.container.appendChild(page);
-        console.log('appended')
+        Page.tabArray[index].toggleBool()
     }
     const unappend = () => {
         Page.container.removeChild(page);
@@ -52,7 +57,6 @@ const tabFactory = function(name, page) {
     
     //add event listeners that check isAppended
     tab.addEventListener("click", function() {
-        console.log('click');
         if(Page.tabArray[index].isAppended.value === true) {
             return;
         } else {
@@ -63,11 +67,10 @@ const tabFactory = function(name, page) {
                 }
             });
             append();
-            Page.tabArray[index].toggleBool()
         }
     });
 
-    return {isAppended, unappend, toggleBool};
+    return {isAppended, unappend, toggleBool, append};
 }
 
 const nav = (() => {
@@ -80,12 +83,9 @@ const nav = (() => {
     const contactTab = tabFactory("Contact Us", contact);
     Page.tabArray.push(contactTab);
 
-    return {homeTab, menuTab, contactTab};
-
+    return { homeTab }
 })();
 
-console.log("working");
 
-
-
-///unappend not working because isAppended is not changing upon run of append
+//initialize the page
+nav.homeTab.append();

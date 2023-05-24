@@ -1,0 +1,128 @@
+@font-face {
+    font-family: custom;
+    src: url(./fonts/Prompt-Regular.ttf);
+}
+
+*{
+    font-family: custom, Georgia, 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
+    color: crimson;
+    --yellow-color: rgb(252, 241, 217);
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+}
+
+#header{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    background-color: lightcoral;
+    align-items: center;
+    border: 3px solid crimson;
+}
+
+#navbar{
+    display: flex;
+    height: 80%;
+    width: 80%;
+}
+
+.button{
+    width: 33%;
+    background-color: var(--yellow-color);
+    border: solid 3px crimson;
+    color: crimson;
+    font-size: 15px;
+}
+
+#content{
+    background-color: var(--yellow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 126px);
+    padding: 30px;
+}
+
+.hero-image{
+    max-height: 500px;
+    width: 700px;
+    height: auto;
+    object-fit: cover;
+}
+
+.menu-image {
+    max-height: 200px;
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+}
+
+#home-element{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+#menu-element{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 20px;
+}
+
+#contact-element{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+#home-title{
+    font-size: 40px;
+    text-align: center;
+}
+
+#menu-title{
+    font-size: 40px;
+    text-align: center;
+}
+
+#contact-title{
+    font-size: 40px;
+    text-align: center;
+}
+
+#home-subtext{
+    text-align: center;
+    font-style: italic;
+}
+
+#subtext-contact{
+    text-align: center;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px crimson;
+    padding: 10px;
+}
+
+#menu-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    overflow: scroll;
+    scrollbar-width: none;
+    height: 100%;
+}

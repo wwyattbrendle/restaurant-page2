@@ -8,10 +8,14 @@ module.exports = {
   },
   module: {
     rules: [
-        {
-            test: /\.jpg$/,
-            type: 'asset/resource'
-        }
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+          test: /\.jpg$/,
+          type: 'asset/resource'
+      }
     ]
   },
 };
